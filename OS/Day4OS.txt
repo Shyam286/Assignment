@@ -1,0 +1,194 @@
+1.Develop a shell script to print the username, current date & time, and current directory.
+
+-->
+#!/bin/bash
+
+# Get the current username
+username=$(whoami)
+
+# Get the current date & time
+current_datetime=$(date "+%Y-%m-%d %H:%M:%S")
+
+# Get the current directory
+current_directory=$(pwd)
+
+# Display the information
+echo "Username: $username"
+echo "Current Date & Time: $current_datetime"
+echo "Current Directory: $current_directory"
+
+
+2.Write a shell script to print sum of all digit of a given number. 
+For e.g. If no is 123, sum of all its digit will be 1+2+3 = 6
+
+-->
+
+#!/bin/bash
+
+# Prompt the user to enter a number
+read -p "Enter a number: " number
+
+# Initialize a variable to store the sum of digits
+sum=0
+
+# Loop through each digit in the number
+while [ $number -gt 0 ]; do
+  # Extract the last digit
+  digit=$((number % 10))
+
+  # Add the digit to the sum
+  sum=$((sum + digit))
+
+  # Remove the last digit
+  number=$((number / 10))
+done
+
+# Display the sum of digits
+echo "Sum of digits: $sum"
+
+3.Develop a shell script to compare three numbers and print the largest. Give the numbers from the 
+command line.
+
+-->
+#!/bin/bash
+
+# Check if there are exactly three command-line arguments
+if [ "$#" -ne 3 ]; then
+  echo "Usage: $0 <number1> <number2> <number3>"
+  exit 1
+fi
+
+# Read the three numbers from the command-line arguments
+number1="$1"
+number2="$2"
+number3="$3"
+
+# Initialize a variable to store the largest number
+largest="$number1"
+
+# Compare the second number with the current largest
+if [ "$number2" -gt "$largest" ]; then
+  largest="$number2"
+fi
+
+# Compare the third number with the current largest
+if [ "$number3" -gt "$largest" ]; then
+  largest="$number3"
+fi
+
+# Display the largest number
+echo "The largest number among $number1, $number2, and $number3 is: $largest"
+
+7..Write a shell script called calculator using case structure, which takes arguments from command 
+line eg., 2+3, 2*3 etc. and displays the result. It should perform the following operations:
+a.Addition
+b.Subtraction
+c.Multiplication
+d.Division
+
+
+-->
+#!/bin/bash
+
+# Check if there are exactly three command-line arguments
+if [ "$#" -ne 3 ]; then
+  echo "Usage: $0 <number1> <operator> <number2>"
+  exit 1
+fi
+
+# Read the command-line arguments
+num1="$1"
+operator="$2"
+num2="$3"
+
+# Perform the calculation based on the operator
+case "$operator" in
+  +)
+    result=$(echo "$num1 + $num2" | bc)
+    ;;
+  -)
+    result=$(echo "$num1 - $num2" | bc)
+    ;;
+  *)
+    echo "Invalid operator. Please use +, -, *, or /."
+    exit 1
+    ;;
+esac
+
+# Display the result
+echo "Result: $result"
+
+
+13.Write script to print given number in reverse order, for eg. If no is 123 it must print as 321.
+
+-->
+#!/bin/bash
+
+# Prompt the user to enter a number
+read -p "Enter a number: " number
+
+# Initialize a variable to store the reversed number
+reversed=0
+
+# Loop through each digit of the number
+while [ "$number" -gt 0 ]; do
+  # Get the last digit of the number
+  digit=$((number % 10))
+
+  # Append the digit to the reversed number
+  reversed=$((reversed * 10 + digit))
+
+  # Remove the last digit from the original number
+  number=$((number / 10))
+done
+
+# Display the reversed number
+echo "Reversed number: $reversed"
+
+
+14.Write script to print nos as 5,4,3,2,1 using while loop.
+
+-->
+
+#!/bin/bash
+
+# Initialize a variable with the starting value
+number=5
+
+# Use a while loop to print numbers in descending order
+while [ "$number" -ge 1 ]; do
+  echo "$number"
+  number=$((number - 1))
+done
+
+
+15.Write script to find out factorial for a given no
+
+-->
+
+#!/bin/bash
+
+# Prompt the user to enter a number
+read -p "Enter a number: " number
+
+# Check if the number is non-negative
+if [ "$number" -lt 0 ]; then
+  echo "Factorial is not defined for negative numbers."
+  exit 1
+fi
+
+# Initialize variables for the factorial and a counter
+factorial=1
+counter=1
+
+# Calculate the factorial using a while loop
+while [ "$counter" -le "$number" ]; do
+  factorial=$((factorial * counter))
+  counter=$((counter + 1))
+done
+
+# Display the factorial
+echo "The factorial of $number is $factorial"
+
+
+

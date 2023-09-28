@@ -1,0 +1,187 @@
+1. Count the total number of words in file text1. : wc -w text1
+
+2.
+
+To list the content of the ls command page-wise in a Bash script, you can use a combination of ls, less, and pagination commands like more or less. Here's a simple Bash script to achieve this:
+
+bash
+Copy code
+#!/bin/bash
+
+# Run the ls command and pipe the output to "less" for pagination
+
+--->  ls | less
+
+Save this script to a file, for example, list_ls_page_wise.sh, and make it executable using the chmod command:
+
+bash
+Copy code
+
+-->  chmod +x list_ls_page_wise.sh
+
+Then, you can run the script like this:
+
+bash
+Copy code
+
+-->  ./list_ls_page_wise.sh
+
+This will display the output of the ls command one page at a time, allowing you to scroll through the results using
+ the arrow keys or other navigation keys. Press 'q' to exit the pager when you're done viewing the list.
+
+3.To create a file (let's call it FILE2) with some text in it, increase the number of hard links to the file to 3, and check
+ the inode number and link count for those names, you can follow these steps:
+
+Create FILE2 with some text:
+bash:
+
+echo "This is some text in FILE2." > FILE2
+
+Verify the inode number of FILE2 and its initial link count:
+bash:
+
+ls -i FILE2  # This will display the inode number
+ls -l FILE2  # This will display the initial link count
+
+The ls -i command will show you the inode number of FILE2, and the ls -l command will show you the initial link
+ count (which should be 1 at this point).
+
+Create hard links to FILE2:
+bash:
+
+ln FILE2 LINK1
+ln FILE2 LINK2
+ln FILE2 LINK3
+
+This creates three hard links to FILE2 with the names LINK1, LINK2, and LINK3.
+
+Verify the inode number and updated link count for each name:
+bash:
+
+ls -i FILE2 LINK1 LINK2 LINK3  # This will display the inode numbers for all names
+ls -l FILE2 LINK1 LINK2 LINK3  # This will display the updated link counts
+
+You should see that all names (including FILE2, LINK1, LINK2, and LINK3) have the same inode number, 
+and the link count for FILE2 should be 4, while the link count for LINK1, LINK2, and LINK3 should be 1 each.
+
+4. Count the total number of words in file text1.
+
+You can use the && operator to run multiple commands sequentially in one line and display their output. 
+Here's how you can display the output of both the "who" and "pwd" commands using a single command:
+
+bash:
+
+-->  who && pwd
+
+When you run this command, it will first execute the "who" command and display its output, and if the "who" 
+command succeeds (returns exit code 0), it will then execute the "pwd" command and display its output.
+
+5. Display the system date in following format:
+Today is Friday, 17 May 96
+
+--> echo "Today is $(date)" or date +"Today is %A, %d %B %y"
+
+6. Display the following text message on the monitor screen.
+      Deposited $100 to you account
+
+You can use the echo command in Bash to display the text message on the monitor screen. Here's how you can 
+display "Deposited $100 to your account":
+
+bash:
+
+-->  echo "Deposited \$100 to your account"
+
+The backslash \ before the dollar sign $ is used to escape it so that it is treated as a literal character and not as 
+a variable expansion. When you run this command, it will print "Deposited $100 to your account" on the screen.
+
+
+7.Display the following message on the monitor. 
+ 	The long listing of my home dir ………… is ………… 
+ 		(Hint: Use ls – l and pwd commands)
+
+
+-->  echo "The long listing of my home dir (pwd)"
+
+(or)
+
+You can display the message "The long listing of my home dir ... is ..." along with the long listing of your home 
+directory by using the ls -l and pwd commands in a Bash script. Here's how you can do it:
+
+bash:
+
+#!/bin/bash
+
+# Get the current directory using the pwd command
+current_dir=$(pwd)
+
+# Display the message with the long listing of the current directory
+echo "The long listing of my home dir $current_dir is ..."
+ls -l "$current_dir"
+
+Save this script to a file, for example, list_home_dir.sh, and make it executable using the chmod command:
+
+bash:
+
+-->  chmod +x list_home_dir.sh
+
+Then, you can run the script like this:
+
+bash:
+
+--> ./list_home_dir.sh
+
+This will display the specified message along with the long listing of your current home directory.
+
+
+Session 3:
+
+1.
+
+Certainly, here are the steps to perform the tasks using the ` vi ` editor:
+
+a) Create a file "Data1.txt":
+
+bash:
+
+vi Data1.txt
+
+This will open the  ` vi ` editor with an empty file named "Data1.txt".
+
+b) Save the file and exit from the vi editor:
+Inside the ` vi ` editor, press `Esc` key to ensure you are in command mode, then type `:wq` 
+and press `Enter`.
+ This will save the file and exit the editor.
+
+c) Open the `vi` editor without specifying a file name:
+
+bash:
+-->  vi
+This will open the `vi` editor without opening any specific file.
+
+d) Write some text and save it to a file "MyData2.txt":
+Inside the `vi` editor, type the text you want to save, then press `Esc` to enter command mode. 
+Type `:w MyData2.txt` and press Enter. This will save the text to a file named 
+"MyData2.txt" and keep the file open in `vi`.
+
+e) Repeat point (c) but after writing some text, don’t save and just exit "vi":
+Inside the `vi` editor (with unsaved changes), press `Esc` to enter command mode, then type `:q!` and press 
+`Enter`. This will exit `vi` without saving changes.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

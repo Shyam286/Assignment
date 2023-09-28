@@ -1,0 +1,97 @@
+1Write a shell script which will generate the O/P as follows
+
+*
+**
+***
+****
+
+-->
+
+#!/bin/bash
+
+# Set the number of lines for the pattern
+lines=4
+
+# Loop through each line
+for ((i = 1; i <= lines; i++)); do
+  # Print "*" for the current line
+  for ((j = 1; j <= i; j++)); do
+    echo -n "*"
+  done
+
+  # Move to the next line
+  echo
+done
+
+
+2.Accept the first name, middle name, and last name of a person in variables fname, mname and lname 
+respectively. Greet the person (take his full name) using appropriate message. 
+
+-->
+
+#!/bin/bash
+
+# Prompt the user for first name, middle name, and last name
+read -p "Enter first name: " fname
+read -p "Enter middle name: " mname
+read -p "Enter last name: " lname
+
+# Concatenate the names to form the full name
+full_name="$fname $mname $lname"
+
+# Display a greeting message using the full name
+echo "Hello, $full_name! Nice to meet you."
+
+
+5.Write a script that accepts a member into MBT health club, if the weight of the person is withing the range
+ of 30-250 Kgs.
+
+-->
+#!/bin/bash
+
+# Prompt the user for their weight
+read -p "Enter your weight in kilograms: " weight
+
+# Check if the weight is within the specified range
+if [ "$weight" -ge 30 ] && [ "$weight" -le 250 ]; then
+  echo "Congratulations! You are accepted as a member of MBT health club."
+else
+  echo "Sorry, your weight is not within the acceptable range for MBT health club membership."
+fi
+
+
+6.Write a shell script that greets the user with an appropriate message depending on the system time.
+
+-->
+#!/bin/bash
+
+# Get the current hour from the system time
+current_hour=$(date +%H)
+
+# Determine the appropriate greeting based on the current hour
+if [ "$current_hour" -ge 0 ] && [ "$current_hour" -lt 12 ]; then
+  greeting="Good morning"
+elif [ "$current_hour" -ge 12 ] && [ "$current_hour" -lt 18 ]; then
+  greeting="Good afternoon"
+else
+  greeting="Good evening"
+fi
+
+# Display the greeting message
+echo "$greeting! How can I assist you today?"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,224 @@
+1.List only the directories in your current directory
+
+You can use the ls command with the `-d` and `-l` options to list only the directories in your current directory in long 
+format. Here's how you can do it:
+
+bash: 
+
+-->  ls -dl */
+
+This command will list only directories in your current directory. The `-d` option tells `ls` to list directories themselves 
+rather than their contents, and the `-l` option provides long format output. The `*/` pattern matches directories, 
+so you will see a list of directories in your current directory.
+
+
+2. Display the name and count of the directories in the current directory.
+
+You can use the `find` and `wc` commands to display the names and count of directories in the current directory. 
+Here's how you can do it:
+
+bash:
+
+-->  find . -type d -maxdepth 1 | wc -l
+
+
+12.Write a menu based shell script which will perform arithmetic operations on two numbers which are inputted by user. Menu should display following operations
+
+              Menu
+            --------------
+          1: Addition
+          2: Substraction
+          3: Multiplication
+          4: Division
+          5: Exit 
+-->
+
+#!/bin/bash
+
+# Function to perform addition
+addition() {
+  result=$((num1 + num2))
+  echo "Result: $result"
+}
+
+# Function to perform subtraction
+subtraction() {
+  result=$((num1 - num2))
+  echo "Result: $result"
+}
+
+# Function to perform multiplication
+multiplication() {
+  result=$((num1 * num2))
+  echo "Result: $result"
+}
+
+# Function to perform division
+division() {
+  if [ $num2 -eq 0 ]; then
+    echo "Error: Division by zero is not allowed."
+  else
+    result=$(awk "BEGIN {printf \"%.2f\", $num1 / $num2}")
+    echo "Result: $result"
+  fi
+}
+
+# Display the menu
+while true; do
+  echo "Menu"
+  echo "--------------"
+  echo "1: Addition"
+  echo "2: Subtraction"
+  echo "3: Multiplication"
+  echo "4: Division"
+  echo "5: Exit"
+  read -p "Enter your choice: " choice
+
+  case $choice in
+    1)
+      read -p "Enter the first number: " num1
+      read -p "Enter the second number: " num2
+      addition
+      ;;
+    2)
+      read -p "Enter the first number: " num1
+      read -p "Enter the second number: " num2
+      subtraction
+      ;;
+    3)
+      read -p "Enter the first number: " num1
+      read -p "Enter the second number: " num2
+      multiplication
+      ;;
+    4)
+      read -p "Enter the first number: " num1
+      read -p "Enter the second number: " num2
+      division
+      ;;
+    5)
+      echo "Exiting the program."
+      exit 0
+      ;;
+    *)
+      echo "Invalid choice. Please select a valid option."
+      ;;
+  esac
+done
+
+
+14. Write a shell script that will accept a string from the user. Copy all contents of the file to other file without that
+ string. Also display number of characters, lines, and words.
+
+-->
+
+#!/bin/bash
+
+# Prompt the user for input
+read -p "Enter the string to remove from the file: " string_to_remove
+
+# Check if the input string is empty
+if [ -z "$string_to_remove" ]; then
+  echo "Input string cannot be empty. Exiting."
+  exit 1
+fi
+
+# Prompt the user for the source file
+read -p "Enter the source file name: " source_file
+
+# Check if the source file exists
+if [ ! -f "$source_file" ]; then
+  echo "Source file '$source_file' does not exist. Exiting."
+  exit 1
+fi
+
+# Prompt the user for the destination file
+read -p "Enter the destination file name: " dest_file
+
+# Use grep to filter out lines containing the specified string, and save the result to the destination file
+grep -v "$string_to_remove" "$source_file" > "$dest_file"
+
+# Count characters, lines, and words in the destination file
+char_count=$(wc -m < "$dest_file")
+line_count=$(wc -l < "$dest_file")
+word_count=$(wc -w < "$dest_file")
+
+# Display the results
+echo "Character count: $char_count"
+echo "Line count: $line_count"
+echo "Word count: $word_count"
+
+15.Write a shell script which will generate the O/P as follows
+
+               *
+     * * *  * * * * * *
+               *
+-->
+#!/bin/bash
+
+# Set the number of lines for the pattern
+lines=3
+
+# Loop through each line
+for ((i = 1; i <= lines; i++)); do
+  # Calculate the number of spaces and stars for each line
+  spaces=$((lines - i))
+  stars=$((2 * i - 1))
+
+  # Print the leading spaces
+  for ((s = 1; s <= spaces; s++)); do
+    echo -n " "
+  done
+
+  # Print the stars for the current line
+  for ((j = 1; j <= stars; j++)); do
+    echo -n "*"
+  done
+
+  # Move to the next line
+  echo
+done
+
+# Print a single asterisk in the center line
+for ((i = 1; i <= lines; i++)); do
+  echo -n " "
+done
+echo "*"
+
+but it will give output like this:
+
+   *
+  ***
+ *****
+   *
+
+16.Write a shell script which will accept three nos. from the keyboard and finds the largest of them.
+
+-->
+#!/bin/bash
+
+# Prompt the user to enter three numbers
+read -p "Enter the first number: " num1
+read -p "Enter the second number: " num2
+read -p "Enter the third number: " num3
+
+# Initialize a variable to store the largest number
+largest=$num1
+
+# Compare the second number with the current largest
+if [ "$num2" -gt "$largest" ]; then
+  largest=$num2
+fi
+
+# Compare the third number with the current largest
+if [ "$num3" -gt "$largest" ]; then
+  largest=$num3
+fi
+
+# Display the largest number
+echo "The largest number among $num1, $num2, and $num3 is: $largest"
+
+
+
+
+
+
