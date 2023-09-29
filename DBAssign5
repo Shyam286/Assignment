@@ -1,0 +1,35 @@
+4.
+Employee table data:
+
+insert into emp values
+( 1,'Bob','Kinto',100000,'2019-01-20','finance'),
+( 2,'Jerry','Kansxo',600000,'2019-01-15','IT'), 
+(3,'Philip','Jose',890000,'2019-02-05','Banking'), 
+(4,'John','Abraham',250000,'2019-02-28','Insurance'), 
+(5,'Michael','Mathew',220000,'2019-02-28','finance'),
+( 6,'Alex','Chreketo',400000,'209-05-10','IT'), 
+(7,'Yohan','Soso',123000,'2019-06-20','Banking');
+
+
+Reward table data:
+
+insert into reward values
+    -> (1,'2019-05-11',1000),
+    -> (2,'2019-02-15',5000),
+    -> (3,'2019-04-22',2000),
+    -> (1,'2019-06-20',8000);
+
+
+
+1:	select *from emp;
+2:	select f_name, l_name from emp;
+3:	select f_name as Employee_Name from emp;
+4:	select lower(l_name) from emp;
+5:	select upper(l_name) from emp;
+6:	select distinct department from emp;
+7:	select substring(f_name,1,4) as extractstring from emp;
+8:	select position('h' in 'John') as Position_h;
+9:	select rtrim(f_name) as F_name_Rtrim from emp;
+10:	select ltrim(f_name) as F_name_Ltrim from emp;
+11:	
+
