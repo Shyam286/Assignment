@@ -1,0 +1,544 @@
+mysql> use college2;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> select * from student;
++------+----------+-------+-------+------+
+| roll | name     | class | marks | age  |
++------+----------+-------+-------+------+
+|    1 | Abhishek | FY    | 67.87 |   24 |
+|    2 | Gautam   | TY    | 72.51 |   21 |
+|    3 | Garima   | FY    | 74.12 |   23 |
++------+----------+-------+-------+------+
+3 rows in set (0.00 sec)
+
+mysql> insert into student(roll, name, class, marks ,age) values (4, 'Shreeprasad', 'SY', 76.31, 26), (5,'Prajwal','SY',73.15,23);
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++------+-------------+-------+-------+------+
+| roll | name        | class | marks | age  |
++------+-------------+-------+-------+------+
+|    1 | Abhishek    | FY    | 67.87 |   24 |
+|    2 | Gautam      | TY    | 72.51 |   21 |
+|    3 | Garima      | FY    | 74.12 |   23 |
+|    4 | Shreeprasad | SY    | 76.31 |   26 |
+|    5 | Vishnu      | SY    | 73.15 |   23 |
++------+-------------+-------+-------+------+
+5 rows in set (0.00 sec)
+
+mysql> alter table student modify roll int primary key;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| roll  | int         | NO   | PRI | NULL    |       |
+| name  | varchar(15) | YES  |     | NULL    |       |
+| class | varchar(10) | YES  |     | NULL    |       |
+| marks | float       | YES  |     | NULL    |       |
+| age   | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table student add roll int unique key;
+ERROR 1060 (42S21): Duplicate column name 'roll'
+mysql> alter table student add marks int unique key;
+ERROR 1060 (42S21): Duplicate column name 'marks'
+mysql> alter table student modify roll int unique key;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| roll  | int         | NO   | PRI | NULL    |       |
+| name  | varchar(15) | YES  |     | NULL    |       |
+| class | varchar(10) | YES  |     | NULL    |       |
+| marks | float       | YES  |     | NULL    |       |
+| age   | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table student modify marks float unique key;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| roll  | int         | NO   | PRI | NULL    |       |
+| name  | varchar(15) | YES  |     | NULL    |       |
+| class | varchar(10) | YES  |     | NULL    |       |
+| marks | float       | YES  | UNI | NULL    |       |
+| age   | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table student drop index marks;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| roll  | int         | NO   | PRI | NULL    |       |
+| name  | varchar(15) | YES  |     | NULL    |       |
+| class | varchar(10) | YES  |     | NULL    |       |
+| marks | float       | YES  |     | NULL    |       |
+| age   | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table student drop index roll;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| roll  | int         | NO   | PRI | NULL    |       |
+| name  | varchar(15) | YES  |     | NULL    |       |
+| class | varchar(10) | YES  |     | NULL    |       |
+| marks | float       | YES  |     | NULL    |       |
+| age   | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table student drop primary key;;
+Query OK, 5 rows affected (0.05 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+ERROR: 
+No query specified
+
+mysql> desc student;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| roll  | int         | NO   |     | NULL    |       |
+| name  | varchar(15) | YES  |     | NULL    |       |
+| class | varchar(10) | YES  |     | NULL    |       |
+| marks | float       | YES  |     | NULL    |       |
+| age   | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from student;
++------+-------------+-------+-------+------+
+| roll | name        | class | marks | age  |
++------+-------------+-------+-------+------+
+|    1 | Abhishek    | FY    | 67.87 |   24 |
+|    2 | Gautam      | TY    | 72.51 |   21 |
+|    3 | Garima      | FY    | 74.12 |   23 |
+|    4 | Shreeprasad | SY    | 76.31 |   26 |
+|    5 | Vishnu      | SY    | 73.15 |   23 |
++------+-------------+-------+-------+------+
+5 rows in set (0.00 sec)
+
+mysql> select count(roll) from student;
++-------------+
+| count(roll) |
++-------------+
+|           5 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(marks) from student;
++-------------------+
+| sum(marks)        |
++-------------------+
+| 363.9600067138672 |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(marks) as total from student;
++-------------------+
+| total             |
++-------------------+
+| 363.9600067138672 |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(marks) as avg from student;
++-------------------+
+| avg               |
++-------------------+
+| 72.79200134277343 |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select max(marks) as top from student;
++-------+
+| top   |
++-------+
+| 76.31 |
++-------+
+1 row in set (0.00 sec)
+
+mysql> select min(marks) as bottom from student;
++--------+
+| bottom |
++--------+
+|  67.87 |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select * from student order by class;
++------+-------------+-------+-------+------+
+| roll | name        | class | marks | age  |
++------+-------------+-------+-------+------+
+|    1 | Abhishek    | FY    | 67.87 |   24 |
+|    3 | Garima      | FY    | 74.12 |   23 |
+|    4 | Shreeprasad | SY    | 76.31 |   26 |
+|    5 | Vishnu      | SY    | 73.15 |   23 |
+|    2 | Gautam      | TY    | 72.51 |   21 |
++------+-------------+-------+-------+------+
+5 rows in set (0.00 sec)
+
+mysql> select * from student order by class desc;
++------+-------------+-------+-------+------+
+| roll | name        | class | marks | age  |
++------+-------------+-------+-------+------+
+|    2 | Gautam      | TY    | 72.51 |   21 |
+|    4 | Shreeprasad | SY    | 76.31 |   26 |
+|    5 | Vishnu      | SY    | 73.15 |   23 |
+|    1 | Abhishek    | FY    | 67.87 |   24 |
+|    3 | Garima      | FY    | 74.12 |   23 |
++------+-------------+-------+-------+------+
+5 rows in set (0.00 sec)
+
+mysql> select * from student order by marks asc;
++------+-------------+-------+-------+------+
+| roll | name        | class | marks | age  |
++------+-------------+-------+-------+------+
+|    1 | Abhishek    | FY    | 67.87 |   24 |
+|    2 | Gautam      | TY    | 72.51 |   21 |
+|    5 | Vishnu      | SY    | 73.15 |   23 |
+|    3 | Garima      | FY    | 74.12 |   23 |
+|    4 | Shreeprasad | SY    | 76.31 |   26 |
++------+-------------+-------+-------+------+
+5 rows in set (0.00 sec)
+
+mysql> select * from student order by marks desc;
++------+-------------+-------+-------+------+
+| roll | name        | class | marks | age  |
++------+-------------+-------+-------+------+
+|    4 | Shreeprasad | SY    | 76.31 |   26 |
+|    3 | Garima      | FY    | 74.12 |   23 |
+|    5 | Vishnu      | SY    | 73.15 |   23 |
+|    2 | Gautam      | TY    | 72.51 |   21 |
+|    1 | Abhishek    | FY    | 67.87 |   24 |
++------+-------------+-------+-------+------+
+5 rows in set (0.00 sec)
+
+mysql> select class from student;
++-------+
+| class |
++-------+
+| FY    |
+| TY    |
+| FY    |
+| SY    |
+| SY    |
++-------+
+5 rows in set (0.00 sec)
+
+mysql> select class from student group by class;
++-------+
+| class |
++-------+
+| FY    |
+| TY    |
+| SY    |
++-------+
+3 rows in set (0.00 sec)
+
+mysql> select class from student group by class order by class;
++-------+
+| class |
++-------+
+| FY    |
+| SY    |
+| TY    |
++-------+
+3 rows in set (0.00 sec)
+
+mysql> select class,max(marks) from student group by class;
++-------+------------+
+| class | max(marks) |
++-------+------------+
+| FY    |      74.12 |
+| TY    |      72.51 |
+| SY    |      76.31 |
++-------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select class,min(marks) from student group by class;
++-------+------------+
+| class | min(marks) |
++-------+------------+
+| FY    |      67.87 |
+| TY    |      72.51 |
+| SY    |      73.15 |
++-------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select class,avg(marks) from student group by class;
++-------+-------------------+
+| class | avg(marks)        |
++-------+-------------------+
+| FY    | 70.99500274658203 |
+| TY    | 72.51000213623047 |
+| SY    | 74.72999954223633 |
++-------+-------------------+
+3 rows in set (0.01 sec)
+
+mysql> select class,count(age) from student group by class;
++-------+------------+
+| class | count(age) |
++-------+------------+
+| FY    |          2 |
+| TY    |          1 |
+| SY    |          2 |
++-------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select class,sum(marks) from student group by class;
++-------+--------------------+
+| class | sum(marks)         |
++-------+--------------------+
+| FY    | 141.99000549316406 |
+| TY    |  72.51000213623047 |
+| SY    | 149.45999908447266 |
++-------+--------------------+
+3 rows in set (0.00 sec)
+
+mysql> select class,count(class),sum(marks),max(marks) as top,min(marks) as low from student group by class;
++-------+--------------+--------------------+-------+-------+
+| class | count(class) | sum(marks)         | top   | low   |
++-------+--------------+--------------------+-------+-------+
+| FY    |            2 | 141.99000549316406 | 74.12 | 67.87 |
+| TY    |            1 |  72.51000213623047 | 72.51 | 72.51 |
+| SY    |            2 | 149.45999908447266 | 76.31 | 73.15 |
++-------+--------------+--------------------+-------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select class,count(class),sum(marks) as total,max(marks) as top,min(marks) as low from student group by class order by total;
++-------+--------------+--------------------+-------+-------+
+| class | count(class) | total              | top   | low   |
++-------+--------------+--------------------+-------+-------+
+| TY    |            1 |  72.51000213623047 | 72.51 | 72.51 |
+| FY    |            2 | 141.99000549316406 | 74.12 | 67.87 |
+| SY    |            2 | 149.45999908447266 | 76.31 | 73.15 |
++-------+--------------+--------------------+-------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select age, avg(marks) from student group by age having age>21;
++------+-------------------+
+| age  | avg(marks)        |
++------+-------------------+
+|   24 | 67.87000274658203 |
+|   23 | 73.63500213623047 |
+|   26 | 76.30999755859375 |
++------+-------------------+
+3 rows in set (0.00 sec)
+
+mysql> select age, avg(marks) from student group by age having age>21 and age<30;
++------+-------------------+
+| age  | avg(marks)        |
++------+-------------------+
+|   24 | 67.87000274658203 |
+|   23 | 73.63500213623047 |
+|   26 | 76.30999755859375 |
++------+-------------------+
+3 rows in set (0.00 sec)
+
+mysql> select  avg(marks),age from student group by age having age>20 and age<30;
++-------------------+------+
+| avg(marks)        | age  |
++-------------------+------+
+| 67.87000274658203 |   24 |
+| 72.51000213623047 |   21 |
+| 73.63500213623047 |   23 |
+| 76.30999755859375 |   26 |
++-------------------+------+
+4 rows in set (0.00 sec)
+
+mysql> select  avg(marks),age from student group by age having age>20 and age<30;^C
+mysql> select * from  student;
++------+-------------+-------+-------+------+
+| roll | name        | class | marks | age  |
++------+-------------+-------+-------+------+
+|    1 | Abhishek    | FY    | 67.87 |   24 |
+|    2 | Gautam      | TY    | 72.51 |   21 |
+|    3 | Garima      | FY    | 74.12 |   23 |
+|    4 | Shreeprasad | SY    | 76.31 |   26 |
+|    5 | Vishnu      | SY    | 73.15 |   23 |
++------+-------------+-------+-------+------+
+5 rows in set (0.01 sec)
+
+mysql> select age from student group by age having age<24;
++------+
+| age  |
++------+
+|   21 |
+|   23 |
++------+
+2 rows in set (0.00 sec)
+
+mysql> select age,count(age) from student group by age having age<24;
++------+------------+
+| age  | count(age) |
++------+------------+
+|   21 |          1 |
+|   23 |          2 |
++------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student where name like 'a%';
++------+----------+-------+-------+------+
+| roll | name     | class | marks | age  |
++------+----------+-------+-------+------+
+|    1 | Abhishek | FY    | 67.87 |   24 |
++------+----------+-------+-------+------+
+1 row in set (0.00 sec)
+
+mysql> select * from student where name like 'p%';
++------+---------+-------+-------+------+
+| roll | name    | class | marks | age  |
++------+---------+-------+-------+------+
+|    5 | Vishnu  | SY    | 73.15 |   23 |
++------+---------+-------+-------+------+
+1 row in set (0.00 sec)
+
+mysql> select * from student where name like 'g%';
++------+--------+-------+-------+------+
+| roll | name   | class | marks | age  |
++------+--------+-------+-------+------+
+|    2 | Gautam | TY    | 72.51 |   21 |
+|    3 | Garima | FY    | 74.12 |   23 |
++------+--------+-------+-------+------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student where name like '____';
+Empty set (0.00 sec)
+
+mysql> select * from student where name like '_____';
+Empty set (0.00 sec)
+
+mysql> select * from student where name like '______';
++------+--------+-------+-------+------+
+| roll | name   | class | marks | age  |
++------+--------+-------+-------+------+
+|    2 | Gautam | TY    | 72.51 |   21 |
+|    3 | Garima | FY    | 74.12 |   23 |
++------+--------+-------+-------+------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student where name like 'g%d';
++------+--------+-------+-------+------+
+| roll | name   | class | marks | age  |
++------+--------+-------+-------+------+
+|    3 | Garima | FY    | 74.12 |   23 |
++------+--------+-------+-------+------+
+1 row in set (0.00 sec)
+
+mysql> select distinct class from student;
++-------+
+| class |
++-------+
+| FY    |
+| TY    |
+| SY    |
++-------+
+3 rows in set (0.00 sec)
+
+mysql> select distinct age from student;
++------+
+| age  |
++------+
+|   24 |
+|   21 |
+|   23 |
+|   26 |
++------+
+4 rows in set (0.00 sec)
+
+mysql> select distinct name from student;
++-------------+
+| name        |
++-------------+
+| Abhishek    |
+| Gautam      |
+| Garima      |
+| Shreeprasad |
+| Prajwal     |
++-------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from student where roll in (1,2,3);
++------+----------+-------+-------+------+
+| roll | name     | class | marks | age  |
++------+----------+-------+-------+------+
+|    1 | Abhishek | FY    | 67.87 |   24 |
+|    2 | Gautam   | TY    | 72.51 |   21 |
+|    3 | Garima   | FY    | 74.12 |   23 |
++------+----------+-------+-------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student where roll not  in (1,2,3);
++------+-------------+-------+-------+------+
+| roll | name        | class | marks | age  |
++------+-------------+-------+-------+------+
+|    4 | Shreeprasad | SY    | 76.31 |   26 |
+|    5 | Vishnu      | SY    | 73.15 |   23 |
++------+-------------+-------+-------+------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student where marks >70;
++------+-------------+-------+-------+------+
+| roll | name        | class | marks | age  |
++------+-------------+-------+-------+------+
+|    2 | Gautam      | TY    | 72.51 |   21 |
+|    3 | Garima      | FY    | 74.12 |   23 |
+|    4 | Shreeprasad | SY    | 76.31 |   26 |
+|    5 | Vishnu      | SY    | 73.15 |   23 |
++------+-------------+-------+-------+------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student where not marks >70;
++------+----------+-------+-------+------+
+| roll | name     | class | marks | age  |
++------+----------+-------+-------+------+
+|    1 | Abhishek | FY    | 67.87 |   24 |
++------+----------+-------+-------+------+
+1 row in set (0.00 sec)
+
+mysql> select * from student where marks=null;
+Empty set (0.00 sec)
+
+mysql> select * from student where marks is not null;
++------+-------------+-------+-------+------+
+| roll | name        | class | marks | age  |
++------+-------------+-------+-------+------+
+|    1 | Abhishek    | FY    | 67.87 |   24 |
+|    2 | Gautam      | TY    | 72.51 |   21 |
+|    3 | Garima      | FY    | 74.12 |   23 |
+|    4 | Shreeprasad | SY    | 76.31 |   26 |
+|    5 | Vishnu      | SY    | 73.15 |   23 |
++------+-------------+-------+-------+------+
+5 rows in set (0.00 sec)
+
+
+
+
+

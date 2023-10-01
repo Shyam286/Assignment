@@ -1,0 +1,246 @@
+
+mysql> create database college;
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| EmployeeDB         |
+| cdacdb             |
+| college            |
+| db                 |
+| empDB              |
+| information_schema |
+| mysql              |
+| performance_schema |
+| pgdac              |
+| stduent            |
+| sys                |
+| test               |
++--------------------+
+12 rows in set (0.00 sec)
+
+mysql> use college;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+
+mysql>create table student (
+	roll int NOT NULL AUTO_INCREMENT,
+	name varchar(100) NOT NULL,
+	class int,
+	marks float,
+	age int,
+	PRIMARY KEY(roll) );
+
+mysql> select * from student;
++------+---------+-------+-------+------+
+| roll | name    | class | marks | age  |
++------+---------+-------+-------+------+
+|    1 | Rohan   | FY    | 72.45 |   23 |
+|    2 | Sanjay  | SY    | 78.05 |   22 |
+|    3 | Ashok   | FY    | 56.23 |   22 |
+|    4 | Preeti  | TY    | 68.34 |   22 |
+|    5 | Shalini | TY    |    88 |   21 |
++------+---------+-------+-------+------+
+5 rows in set (0.00 sec)
+
+mysql> describe student;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| roll  | int         | NO   | PRI | NULL    |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
+| class | varchar(10) | YES  |     | NULL    |       |
+| marks | float       | NO   |     | NULL    |       |
+| age   | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table student modify column marks int;
+Query OK, 5 rows affected (0.08 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> describe student;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| roll  | int         | NO   | PRI | NULL    |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
+| class | varchar(10) | YES  |     | NULL    |       |
+| marks | int         | YES  |     | NULL    |       |
+| age   | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table student drop column age;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe student;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| roll  | int         | NO   | PRI | NULL    |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
+| class | varchar(10) | YES  |     | NULL    |       |
+| marks | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_college |
++-------------------+
+| dept              |
+| emp               |
+| student           |
++-------------------+
+3 rows in set (0.00 sec)
+
+mysql> mysql> show databases;
+
+mysql> +--------------------+
+    -> | Database           |
+    -> +--------------------+
+    -> | EmployeeDB         |
+    -> | cdacdb             |
+    -> | college            |
+    -> | db                 |
+    -> | demo               |
+    -> | empDB              |
+    -> | information_schema |
+    -> | mysql              |
+    -> | performance_schema |
+    -> | pgdac              |
+    -> | stduent            |
+    -> | sys                |
+    -> | test               |
+    -> +--------------------+
+    -> 13 rows in set (0.01 sec)
+    -> 
+    -> mysql> use database;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '+--------------------+
+| Database           |
++--------------------+
+| EmployeeD' at line 1
+
+    '> | EmployeeDB         |
+    '> | cdacdb             |
+    '> | db                 |
+    '> | demo               |
+    '> | empDB              |
+    '> | information_schema |
+    '> | mysql              |
+    '> | performance_schema |
+    '> | pgdac              |
+    '> | stduent            |
+    '> | sys                |
+    '> | test               |
+    '> +--------------------+
+    '> 12 rows in set 
+
+
+
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| EmployeeDB         |
+| cdacdb             |
+| college            |
+| db                 |
+| demo               |
+| empDB              |
+| information_schema |
+| mysql              |
+| performance_schema |
+| pgdac              |
+| stduent            |
+| sys                |
+| test               |
++--------------------+
+13 rows in set (0.01 sec)
+
+mysql> use database;
+ERROR 1049 (42000): Unknown database 'database'
+mysql> use database demo;
+ERROR 1049 (42000): Unknown database 'database'
+mysql> use demo;
+Database changed
+mysql> creat table student(id int not null);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'creat table student(id int not null)' at line 1
+mysql> create table student(id int not null);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> truncate table student;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from student;
+Empty set (0.00 sec)
+
+mysql> drop table student;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from student;
+ERROR 1146 (42S02): Table 'demo.student' doesn't exist
+mysql> drop database college;
+Query OK, 3 rows affected (0.02 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| EmployeeDB         |
+| cdacdb             |
+| db                 |
+| demo               |
+| empDB              |
+| information_schema |
+| mysql              |
+| performance_schema |
+| pgdac              |
+| stduent            |
+| sys                |
+| test               |
++--------------------+
+
+mysql> truncate table student;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from student;
+Empty set (0.00 sec)
+
+mysql> drop table student;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from student;
+ERROR 1146 (42S02): Table 'demo.student' doesn't exist
+mysql> drop database college;
+Query OK, 3 rows affected (0.02 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| EmployeeDB         |
+| cdacdb             |
+| db                 |
+| demo               |
+| empDB              |
+| information_schema |
+| mysql              |
+| performance_schema |
+| pgdac              |
+| stduent            |
+| sys                |
+| test               |
++--------------------+
+12 rows in set (0.00 sec)
+
+mysql> 
+
+
+

@@ -1,0 +1,140 @@
+mysql> create database college;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| EmployeeDB         |
+| cdacdb             |
+| college            |
+| db                 |
+| demo               |
+| empDB              |
+| information_schema |
+| mysql              |
+| performance_schema |
+| pgdac              |
+| stduent            |
+| sys                |
+| test               |
++--------------------+
+13 rows in set (0.00 sec)
+
+mysql> use college;
+Database changed
+ 
+mysql> create table student (roll int not null,
+    -> name varchar(100) not null,
+    -> class varchar(50),
+    -> marks float,
+    -> age int);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_college |
++-------------------+
+| student           |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> insert into student values (1, 'Rohan', 'FY', 72.45, 23);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student values (2, 'Sanjay', 'SY',  78.05, 22);
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  insert into student values (3, 'Ashok', 'FY', 56.23, 22);
+Query OK, 1 row affected (0.01 sec)
+
+mysql>  insert into student values (4, 'Preeti', 'TY', 68.34, 22);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student values (5, 'Shalini', 'TY',  88.00, 21);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student;
++------+---------+-------+-------+------+
+| roll | name    | class | marks | age  |
++------+---------+-------+-------+------+
+|    1 | Rohan   | FY    | 72.45 |   23 |
+|    2 | Sanjay  | SY    | 78.05 |   22 |
+|    3 | Ashok   | FY    | 56.23 |   22 |
+|    4 | Preeti  | TY    | 68.34 |   22 |
+|    5 | Shalini | TY    |    88 |   21 |
++------+---------+-------+-------+------+
+5 rows in set (0.00 sec)
+
+mysql> delete from student wher roll = 4;
+mysql> delete from student where roll = 4;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student;
++------+---------+-------+-------+------+
+| roll | name    | class | marks | age  |
++------+---------+-------+-------+------+
+|    1 | Rohan   | FY    | 72.45 |   23 |
+|    2 | Sanjay  | SY    | 78.05 |   22 |
+|    3 | Ashok   | FY    | 56.23 |   22 |
+|    5 | Shalini | TY    |    88 |   21 |
++------+---------+-------+-------+------+
+4 rows in set (0.00 sec)
+
+mysql> update student set marks = 79.35 where roll = 3;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++------+---------+-------+-------+------+
+| roll | name    | class | marks | age  |
++------+---------+-------+-------+------+
+|    1 | Rohan   | FY    | 72.45 |   23 |
+|    2 | Sanjay  | SY    | 78.05 |   22 |
+|    3 | Ashok   | FY    | 79.35 |   22 |
+|    5 | Shalini | TY    |    88 |   21 |
++------+---------+-------+-------+------+
+4 rows in set (0.00 sec)
+
+mysql> update student set marks=marks+0.5;
+Query OK, 4 rows affected (0.00 sec)
+Rows matched: 4  Changed: 4  Warnings: 0
+
+mysql> select * from student;
++------+---------+-------+-------+------+
+| roll | name    | class | marks | age  |
++------+---------+-------+-------+------+
+|    1 | Rohan   | FY    | 72.95 |   23 |
+|    2 | Sanjay  | SY    | 78.55 |   22 |
+|    3 | Ashok   | FY    | 79.85 |   22 |
+|    5 | Shalini | TY    |  88.5 |   21 |
++------+---------+-------+-------+------+
+4 rows in set (0.00 sec)
+
+mysql> truncate student;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from student;
+Empty set (0.00 sec)
+
+mysql> insert into student values (1, 'Rohan', 'FY', 72.45, 23),
+    ->       (2, 'Sanjay', 'SY',  78.05, 22),
+    ->	     (3, 'Ashok', 'FY', 56.23, 22),
+    ->       (4, 'Preeti', 'TY', 68.34, 22),
+    ->       (5, 'Shalini', 'TY',  88.00, 21);
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++------+---------+-------+-------+------+
+| roll | name    | class | marks | age  |
++------+---------+-------+-------+------+
+|    1 | Rohan   | FY    | 72.45 |   23 |
+|    2 | Sanjay  | SY    | 78.05 |   22 |
+|    3 | Ashok   | FY    | 56.23 |   22 |
+|    4 | Preeti  | TY    | 68.34 |   22 |
+|    5 | Shalini | TY    |    88 |   21 |
++------+---------+-------+-------+------+
+5 rows in set (0.00 sec)
+
+mysql> 

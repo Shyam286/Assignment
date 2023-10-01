@@ -1,0 +1,23 @@
+1. select emp.name, emp.birth, dept.dept_name, dept.dept_block from emp inner join dept on emp.dept_id = dept.dept_id;
+
+2. select name from emp where name like '____a';
+
+3. select name, timestampdiff(year, birth, curdate) as age from emp;
+
+4.
+	1:	select *from emp;
+	2:	select First_name, Last_name from emp;
+	3:	select First_name as Employee_Name from emp;
+	4:	select lower(Last_name) from emp;
+	5:	select upper(Last_name) from emp;
+	6:	select distinct department from emp;
+	7:	select substring(First_name,1,4) as extractstring from emp;
+	8:	select position('h' in 'John') as Position_h;
+	9:	select rtrim(First_name) as First_name_Rtrim from emp;
+	10:	select ltrim(First_name) as First_name_Ltrim from emp;
+	11:	create table employee (Employee_id int primary key,
+	         First_name varchar(20),
+	         Last_name varchar(20),
+	         Salary int,
+	         Joining_date date,
+	         Department varchar(20));
