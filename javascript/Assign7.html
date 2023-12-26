@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Min Function</title>
+</head>
+<body>
+
+    <script>
+        function min() {
+            if (arguments.length === 0) {
+                console.log("No arguments provided.");
+                return;
+            }
+
+            let minVal = arguments[0];
+            for (let i = 1; i < arguments.length; i++) {
+                if (arguments[i] < minVal) {
+                    minVal = arguments[i];
+                }
+            }
+
+            console.log("The minimum value is:", minVal);
+            return minVal;
+        }
+
+        // Example usage:
+        min(5, 2, 8, 1, 10); // Output: The minimum value is: 1
+        min(3, 7, 2, 9);    // Output: The minimum value is: 2
+        min();              // Output: No arguments provided.
+    </script>
+
+</body>
+</html>
